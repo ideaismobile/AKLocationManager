@@ -1,0 +1,4 @@
+platform :ios
+
+podspec :path => "../AKLocationManager.podspec"
+

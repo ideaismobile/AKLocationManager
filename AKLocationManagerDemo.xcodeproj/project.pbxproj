@@ -18,11 +18,11 @@
 		95099BB016C13C8200EEE777 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95099BAF16C13C8200EEE777 /* Default-568h@2x.png */; };
 		95099BB316C13C8200EEE777 /* AKLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95099BB216C13C8200EEE777 /* AKLViewController.m */; };
 		95099BB616C13C8200EEE777 /* AKLViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95099BB416C13C8200EEE777 /* AKLViewController.xib */; };
-		95099BBF16C13CA100EEE777 /* AKLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 95099BBE16C13CA100EEE777 /* AKLocationManager.m */; };
 		95099BC116C13CB000EEE777 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95099BC016C13CB000EEE777 /* CoreLocation.framework */; };
 		95099BC416C13FFF00EEE777 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 95099BC216C13FFF00EEE777 /* LICENSE */; };
 		95099BC516C13FFF00EEE777 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 95099BC316C13FFF00EEE777 /* README.md */; };
 		95099BC716C143D100EEE777 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95099BC616C143D100EEE777 /* MapKit.framework */; };
+		95099BCB16C1969500EEE777 /* AKLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 95099BCA16C1969500EEE777 /* AKLocationManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,12 +42,12 @@
 		95099BB116C13C8200EEE777 /* AKLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AKLViewController.h; sourceTree = "<group>"; };
 		95099BB216C13C8200EEE777 /* AKLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AKLViewController.m; sourceTree = "<group>"; };
 		95099BB516C13C8200EEE777 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AKLViewController.xib; sourceTree = "<group>"; };
-		95099BBD16C13CA100EEE777 /* AKLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKLocationManager.h; sourceTree = "<group>"; };
-		95099BBE16C13CA100EEE777 /* AKLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKLocationManager.m; sourceTree = "<group>"; };
 		95099BC016C13CB000EEE777 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		95099BC216C13FFF00EEE777 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		95099BC316C13FFF00EEE777 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		95099BC616C143D100EEE777 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		95099BC916C1969500EEE777 /* AKLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKLocationManager.h; sourceTree = "<group>"; };
+		95099BCA16C1969500EEE777 /* AKLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKLocationManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,9 +69,9 @@
 		95099B8D16C13C8200EEE777 = {
 			isa = PBXGroup;
 			children = (
+				95099BC816C1969500EEE777 /* Classes */,
 				95099BC216C13FFF00EEE777 /* LICENSE */,
 				95099BC316C13FFF00EEE777 /* README.md */,
-				95099BBC16C13C8D00EEE777 /* Classes */,
 				95099B9F16C13C8200EEE777 /* AKLocationManagerDemo */,
 				95099B9816C13C8200EEE777 /* Frameworks */,
 				95099B9716C13C8200EEE777 /* Products */,
@@ -125,13 +125,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		95099BBC16C13C8D00EEE777 /* Classes */ = {
+		95099BC816C1969500EEE777 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				95099BBD16C13CA100EEE777 /* AKLocationManager.h */,
-				95099BBE16C13CA100EEE777 /* AKLocationManager.m */,
+				95099BC916C1969500EEE777 /* AKLocationManager.h */,
+				95099BCA16C1969500EEE777 /* AKLocationManager.m */,
 			);
-			name = Classes;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,7 +206,7 @@
 				95099BA616C13C8200EEE777 /* main.m in Sources */,
 				95099BAA16C13C8200EEE777 /* AKLAppDelegate.m in Sources */,
 				95099BB316C13C8200EEE777 /* AKLViewController.m in Sources */,
-				95099BBF16C13CA100EEE777 /* AKLocationManager.m in Sources */,
+				95099BCB16C1969500EEE777 /* AKLocationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
