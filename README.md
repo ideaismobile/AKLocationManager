@@ -21,7 +21,7 @@ $ git clone git://github.com/appkraft/AKLocationManager.git
 ```
 
 - Call call + (void)startLocatingWithUpdateBlock:(LocationUpdateBlock)didUpdate failedBlock:(LocationFailedBlock)didFail; it will check for authorization status and if location services is turned on, it will also fire a timeout timer.
-```
+```objc
 [AKLocationManager startLocatingWithUpdateBlock:^(CLLocation *location){
     // location acquired
 }failedBlock:^(NSError *error){
