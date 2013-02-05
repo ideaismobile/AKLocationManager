@@ -1,0 +1,337 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		95099B9A16C13C8200EEE777 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95099B9916C13C8200EEE777 /* UIKit.framework */; };
+		95099B9C16C13C8200EEE777 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95099B9B16C13C8200EEE777 /* Foundation.framework */; };
+		95099B9E16C13C8200EEE777 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95099B9D16C13C8200EEE777 /* CoreGraphics.framework */; };
+		95099BA416C13C8200EEE777 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95099BA216C13C8200EEE777 /* InfoPlist.strings */; };
+		95099BA616C13C8200EEE777 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95099BA516C13C8200EEE777 /* main.m */; };
+		95099BAA16C13C8200EEE777 /* AKLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95099BA916C13C8200EEE777 /* AKLAppDelegate.m */; };
+		95099BAC16C13C8200EEE777 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 95099BAB16C13C8200EEE777 /* Default.png */; };
+		95099BAE16C13C8200EEE777 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95099BAD16C13C8200EEE777 /* Default@2x.png */; };
+		95099BB016C13C8200EEE777 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 95099BAF16C13C8200EEE777 /* Default-568h@2x.png */; };
+		95099BB316C13C8200EEE777 /* AKLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95099BB216C13C8200EEE777 /* AKLViewController.m */; };
+		95099BB616C13C8200EEE777 /* AKLViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95099BB416C13C8200EEE777 /* AKLViewController.xib */; };
+		95099BBF16C13CA100EEE777 /* AKLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 95099BBE16C13CA100EEE777 /* AKLocationManager.m */; };
+		95099BC116C13CB000EEE777 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95099BC016C13CB000EEE777 /* CoreLocation.framework */; };
+		95099BC416C13FFF00EEE777 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 95099BC216C13FFF00EEE777 /* LICENSE */; };
+		95099BC516C13FFF00EEE777 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 95099BC316C13FFF00EEE777 /* README.md */; };
+		95099BC716C143D100EEE777 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95099BC616C143D100EEE777 /* MapKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		95099B9616C13C8200EEE777 /* AKLocationManagerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AKLocationManagerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		95099B9916C13C8200EEE777 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		95099B9B16C13C8200EEE777 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		95099B9D16C13C8200EEE777 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		95099BA116C13C8200EEE777 /* AKLocationManagerDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AKLocationManagerDemo-Info.plist"; sourceTree = "<group>"; };
+		95099BA316C13C8200EEE777 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		95099BA516C13C8200EEE777 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		95099BA716C13C8200EEE777 /* AKLocationManagerDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AKLocationManagerDemo-Prefix.pch"; sourceTree = "<group>"; };
+		95099BA816C13C8200EEE777 /* AKLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AKLAppDelegate.h; sourceTree = "<group>"; };
+		95099BA916C13C8200EEE777 /* AKLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AKLAppDelegate.m; sourceTree = "<group>"; };
+		95099BAB16C13C8200EEE777 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		95099BAD16C13C8200EEE777 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		95099BAF16C13C8200EEE777 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		95099BB116C13C8200EEE777 /* AKLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AKLViewController.h; sourceTree = "<group>"; };
+		95099BB216C13C8200EEE777 /* AKLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AKLViewController.m; sourceTree = "<group>"; };
+		95099BB516C13C8200EEE777 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AKLViewController.xib; sourceTree = "<group>"; };
+		95099BBD16C13CA100EEE777 /* AKLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKLocationManager.h; sourceTree = "<group>"; };
+		95099BBE16C13CA100EEE777 /* AKLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKLocationManager.m; sourceTree = "<group>"; };
+		95099BC016C13CB000EEE777 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		95099BC216C13FFF00EEE777 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		95099BC316C13FFF00EEE777 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		95099BC616C143D100EEE777 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		95099B9316C13C8200EEE777 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95099BC716C143D100EEE777 /* MapKit.framework in Frameworks */,
+				95099BC116C13CB000EEE777 /* CoreLocation.framework in Frameworks */,
+				95099B9A16C13C8200EEE777 /* UIKit.framework in Frameworks */,
+				95099B9C16C13C8200EEE777 /* Foundation.framework in Frameworks */,
+				95099B9E16C13C8200EEE777 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		95099B8D16C13C8200EEE777 = {
+			isa = PBXGroup;
+			children = (
+				95099BC216C13FFF00EEE777 /* LICENSE */,
+				95099BC316C13FFF00EEE777 /* README.md */,
+				95099BBC16C13C8D00EEE777 /* Classes */,
+				95099B9F16C13C8200EEE777 /* AKLocationManagerDemo */,
+				95099B9816C13C8200EEE777 /* Frameworks */,
+				95099B9716C13C8200EEE777 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		95099B9716C13C8200EEE777 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				95099B9616C13C8200EEE777 /* AKLocationManagerDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		95099B9816C13C8200EEE777 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				95099BC616C143D100EEE777 /* MapKit.framework */,
+				95099BC016C13CB000EEE777 /* CoreLocation.framework */,
+				95099B9916C13C8200EEE777 /* UIKit.framework */,
+				95099B9B16C13C8200EEE777 /* Foundation.framework */,
+				95099B9D16C13C8200EEE777 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		95099B9F16C13C8200EEE777 /* AKLocationManagerDemo */ = {
+			isa = PBXGroup;
+			children = (
+				95099BA816C13C8200EEE777 /* AKLAppDelegate.h */,
+				95099BA916C13C8200EEE777 /* AKLAppDelegate.m */,
+				95099BB116C13C8200EEE777 /* AKLViewController.h */,
+				95099BB216C13C8200EEE777 /* AKLViewController.m */,
+				95099BB416C13C8200EEE777 /* AKLViewController.xib */,
+				95099BA016C13C8200EEE777 /* Supporting Files */,
+			);
+			path = AKLocationManagerDemo;
+			sourceTree = "<group>";
+		};
+		95099BA016C13C8200EEE777 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				95099BA116C13C8200EEE777 /* AKLocationManagerDemo-Info.plist */,
+				95099BA216C13C8200EEE777 /* InfoPlist.strings */,
+				95099BA516C13C8200EEE777 /* main.m */,
+				95099BA716C13C8200EEE777 /* AKLocationManagerDemo-Prefix.pch */,
+				95099BAB16C13C8200EEE777 /* Default.png */,
+				95099BAD16C13C8200EEE777 /* Default@2x.png */,
+				95099BAF16C13C8200EEE777 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		95099BBC16C13C8D00EEE777 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				95099BBD16C13CA100EEE777 /* AKLocationManager.h */,
+				95099BBE16C13CA100EEE777 /* AKLocationManager.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		95099B9516C13C8200EEE777 /* AKLocationManagerDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 95099BB916C13C8200EEE777 /* Build configuration list for PBXNativeTarget "AKLocationManagerDemo" */;
+			buildPhases = (
+				95099B9216C13C8200EEE777 /* Sources */,
+				95099B9316C13C8200EEE777 /* Frameworks */,
+				95099B9416C13C8200EEE777 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AKLocationManagerDemo;
+			productName = AKLocationManagerDemo;
+			productReference = 95099B9616C13C8200EEE777 /* AKLocationManagerDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		95099B8E16C13C8200EEE777 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = AKL;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = Appkraft;
+			};
+			buildConfigurationList = 95099B9116C13C8200EEE777 /* Build configuration list for PBXProject "AKLocationManagerDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 95099B8D16C13C8200EEE777;
+			productRefGroup = 95099B9716C13C8200EEE777 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				95099B9516C13C8200EEE777 /* AKLocationManagerDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		95099B9416C13C8200EEE777 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95099BA416C13C8200EEE777 /* InfoPlist.strings in Resources */,
+				95099BAC16C13C8200EEE777 /* Default.png in Resources */,
+				95099BAE16C13C8200EEE777 /* Default@2x.png in Resources */,
+				95099BB016C13C8200EEE777 /* Default-568h@2x.png in Resources */,
+				95099BB616C13C8200EEE777 /* AKLViewController.xib in Resources */,
+				95099BC416C13FFF00EEE777 /* LICENSE in Resources */,
+				95099BC516C13FFF00EEE777 /* README.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		95099B9216C13C8200EEE777 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95099BA616C13C8200EEE777 /* main.m in Sources */,
+				95099BAA16C13C8200EEE777 /* AKLAppDelegate.m in Sources */,
+				95099BB316C13C8200EEE777 /* AKLViewController.m in Sources */,
+				95099BBF16C13CA100EEE777 /* AKLocationManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		95099BA216C13C8200EEE777 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				95099BA316C13C8200EEE777 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		95099BB416C13C8200EEE777 /* AKLViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				95099BB516C13C8200EEE777 /* en */,
+			);
+			name = AKLViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		95099BB716C13C8200EEE777 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		95099BB816C13C8200EEE777 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		95099BBA16C13C8200EEE777 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AKLocationManagerDemo/AKLocationManagerDemo-Prefix.pch";
+				INFOPLIST_FILE = "AKLocationManagerDemo/AKLocationManagerDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		95099BBB16C13C8200EEE777 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AKLocationManagerDemo/AKLocationManagerDemo-Prefix.pch";
+				INFOPLIST_FILE = "AKLocationManagerDemo/AKLocationManagerDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		95099B9116C13C8200EEE777 /* Build configuration list for PBXProject "AKLocationManagerDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95099BB716C13C8200EEE777 /* Debug */,
+				95099BB816C13C8200EEE777 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		95099BB916C13C8200EEE777 /* Build configuration list for PBXNativeTarget "AKLocationManagerDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95099BBA16C13C8200EEE777 /* Debug */,
+				95099BBB16C13C8200EEE777 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 95099B8E16C13C8200EEE777 /* Project object */;
+}
