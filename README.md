@@ -1,10 +1,8 @@
 AKLocationManager leverages the implementation of delegates to handle simple scenarios where you just want a quick way to get the user's current coordinate.
 
-This class uses ARC.
-
 ## Usage
 
-- Clone the repository:
+- Download or clone the repository:
 
 ```bash
 $ git clone git://github.com/appkraft/AKLocationManager.git
@@ -20,7 +18,7 @@ $ git clone git://github.com/appkraft/AKLocationManager.git
 #import "AKLocationManager.h"
 ```
 
-- Call call + (void)startLocatingWithUpdateBlock:(LocationUpdateBlock)didUpdate failedBlock:(LocationFailedBlock)didFail; it will check for authorization status and if location services is turned on, it will also fire a timeout timer.
+- Call + (void)startLocatingWithUpdateBlock:(LocationUpdateBlock)didUpdate failedBlock:(LocationFailedBlock)didFail; it will check for authorization status and if location services is turned on, it will also fire a timeout timer.
 ```objc
 [AKLocationManager startLocatingWithUpdateBlock:^(CLLocation *location){
     // location acquired
@@ -29,7 +27,9 @@ $ git clone git://github.com/appkraft/AKLocationManager.git
 }];
 ```
 
-- Check the header file or sample project for small documentation and other customization options.
+- Check the header file or sample project for a small documentation and other customization options.
+
+**This class uses ARC.**
 
 ## License
 
