@@ -97,7 +97,8 @@ NSString *const kAKLocationManagerErrorDomain = @"AKErrorDomain";
         NSError *error = [[NSError alloc] initWithDomain:kAKLocationManagerErrorDomain
                                                     code:AKLocationManagerErrorTimeout
                                                 userInfo:nil];
-        _locationDidFail(error);
+        if (_locationDidFail)
+            _locationDidFail(error);
     }
     _locationTimeoutTimer = nil;
 }
@@ -114,7 +115,8 @@ NSString *const kAKLocationManagerErrorDomain = @"AKErrorDomain";
             _locationTimeoutTimer = nil;
         }
         [manager stopUpdatingLocation];
-        _locationDidUpdate(newLocation);
+        if (_locationDidUpdate)
+            _locationDidUpdate(newLocation);
     }
 }
 
@@ -127,7 +129,8 @@ NSString *const kAKLocationManagerErrorDomain = @"AKErrorDomain";
         _locationTimeoutTimer = nil;
     }
     [manager stopUpdatingLocation];
-    _locationDidFail(error);
+    if (_locationDidFail)
+        _locationDidFail(error);
 }
 
 + (void)stopLocating
