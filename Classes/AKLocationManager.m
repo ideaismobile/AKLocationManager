@@ -62,8 +62,8 @@ NSString *const kAKLocationManagerErrorDomain = @"AKErrorDomain";
 + (void)startLocatingWithUpdateBlock:(LocationUpdateBlock)didUpdate
                          failedBlock:(LocationFailedBlock)didFail
 {
-    _locationDidUpdate = didUpdate;
-    _locationDidFail = didFail;
+    _locationDidUpdate = [didUpdate copy];
+    _locationDidFail = [didFail copy];
     
     if (!_locationManager)
     {
@@ -97,7 +97,8 @@ NSString *const kAKLocationManagerErrorDomain = @"AKErrorDomain";
         NSError *error = [[NSError alloc] initWithDomain:kAKLocationManagerErrorDomain
                                                     code:AKLocationManagerErrorTimeout
                                                 userInfo:nil];
-        _locationDidFail(error);
+        if (_locationDidFail)
+            _locationDidFail(error);
     }
     _locationTimeoutTimer = nil;
 }
@@ -105,7 +106,7 @@ NSString *const kAKLocationManagerErrorDomain = @"AKErrorDomain";
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     AKLLog(@"Did update: %@", newLocation);
-    if (newLocation.horizontalAccuracy <= _distanceFilterAccuracy)
+    if (newLocation.horizontalAccuracy <= _distanceFilterAccuracy && abs([newLocation.timestamp timeIntervalSinceNow]) < 15.0)
     {
         AKLLog(@"loc > entrou if");
         if (_locationTimeoutTimer)
@@ -114,7 +115,8 @@ NSString *const kAKLocationManagerErrorDomain = @"AKErrorDomain";
             _locationTimeoutTimer = nil;
         }
         [manager stopUpdatingLocation];
-        _locationDidUpdate(newLocation);
+        if (_locationDidUpdate)
+            _locationDidUpdate(newLocation);
     }
 }
 
@@ -127,7 +129,8 @@ NSString *const kAKLocationManagerErrorDomain = @"AKErrorDomain";
         _locationTimeoutTimer = nil;
     }
     [manager stopUpdatingLocation];
-    _locationDidFail(error);
+    if (_locationDidFail)
+        _locationDidFail(error);
 }
 
 + (void)stopLocating
