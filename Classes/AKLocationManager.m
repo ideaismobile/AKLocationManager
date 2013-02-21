@@ -106,7 +106,7 @@ NSString *const kAKLocationManagerErrorDomain = @"AKErrorDomain";
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     AKLLog(@"Did update: %@", newLocation);
-    if (newLocation.horizontalAccuracy <= _distanceFilterAccuracy)
+    if (newLocation.horizontalAccuracy <= _distanceFilterAccuracy && abs([newLocation.timestamp timeIntervalSinceNow]) < 15.0)
     {
         AKLLog(@"loc > entrou if");
         if (_locationTimeoutTimer)
