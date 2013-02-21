@@ -62,8 +62,8 @@ NSString *const kAKLocationManagerErrorDomain = @"AKErrorDomain";
 + (void)startLocatingWithUpdateBlock:(LocationUpdateBlock)didUpdate
                          failedBlock:(LocationFailedBlock)didFail
 {
-    _locationDidUpdate = didUpdate;
-    _locationDidFail = didFail;
+    _locationDidUpdate = [didUpdate copy];
+    _locationDidFail = [didFail copy];
     
     if (!_locationManager)
     {
