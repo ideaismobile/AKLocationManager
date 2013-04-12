@@ -41,9 +41,13 @@ NSString *const kAKLocationManagerErrorDomain = @"AKErrorDomain";
 //
 // If you need logging, just uncomment the line below and comment AKLLog(...) inside #ifdef DEBUG
 //
+// If you want to disable logging completely, add #define AKLLog(...) to your prefix file
+//
+
 #ifdef DEBUG
-//#   define AKLLog(...)
-#   define AKLLog(fmt, ...) NSLog((@"AKLocation - [Line %d] " fmt), __LINE__, ##__VA_ARGS__);
+#   ifndef AKLLog
+#      define AKLLog(fmt, ...) NSLog((@"AKLocation - [Line %d] " fmt), __LINE__, ##__VA_ARGS__);
+#   endif
 #else
 #   define AKLLog(...)
 #endif
