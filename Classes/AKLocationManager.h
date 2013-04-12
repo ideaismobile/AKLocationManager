@@ -54,6 +54,14 @@ typedef enum {
 //
 + (void)setDistanceFilterAccuracy:(CLLocationAccuracy)accuracy;
 
+// 
+// Desired accuracy
+//
+// CLLocationAccuracy used to represent a location accuracy level in meters. The lower the value in meters, the
+// more physically precise the location is. A negative accuracy value indicates an invalid location.
+// 
++ (void)setDesiredAccuracy:(CLLocationAccuracy)desiredAccuracy;
+
 //
 // Number of seconds to wait before timing out - default is 10
 //

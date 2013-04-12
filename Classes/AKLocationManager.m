@@ -34,6 +34,7 @@ static AKLocationManager *_locationManager = nil;
 static NSTimer *_locationTimeoutTimer = nil;
 static CLLocationAccuracy _distanceFilterAccuracy = 2000.0f;
 static NSTimeInterval _timeoutTimeInterval = 10.0f;
+static CLLocationAccuracy _desiredAccuracy = 3000.0;
 
 NSString *const kAKLocationManagerErrorDomain = @"AKErrorDomain";
 
@@ -54,6 +55,11 @@ NSString *const kAKLocationManagerErrorDomain = @"AKErrorDomain";
     _distanceFilterAccuracy = accuracy;
 }
 
++ (void)setDesiredAccuracy:(CLLocationAccuracy)desiredAccuracy
+{
+    _desiredAccuracy = desiredAccuracy;
+}
+
 + (void)setTimeoutTimeInterval:(NSTimeInterval)timeInterval
 {
     _timeoutTimeInterval = timeInterval;
@@ -71,7 +77,7 @@ NSString *const kAKLocationManagerErrorDomain = @"AKErrorDomain";
     }
     
     _locationManager.distanceFilter = _distanceFilterAccuracy;
-    _locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
+    _locationManager.desiredAccuracy = _desiredAccuracy;
     _locationManager.delegate = _locationManager;
     
     _locationTimeoutTimer = [NSTimer scheduledTimerWithTimeInterval:_timeoutTimeInterval
