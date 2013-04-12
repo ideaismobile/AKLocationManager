@@ -34,15 +34,20 @@ static AKLocationManager *_locationManager = nil;
 static NSTimer *_locationTimeoutTimer = nil;
 static CLLocationAccuracy _distanceFilterAccuracy = 2000.0f;
 static NSTimeInterval _timeoutTimeInterval = 10.0f;
+static CLLocationAccuracy _desiredAccuracy = 3000.0;
 
 NSString *const kAKLocationManagerErrorDomain = @"AKErrorDomain";
 
 //
 // If you need logging, just uncomment the line below and comment AKLLog(...) inside #ifdef DEBUG
 //
+// If you want to disable logging completely, add #define AKLLog(...) to your prefix file
+//
+
 #ifdef DEBUG
-//#   define AKLLog(...)
-#   define AKLLog(fmt, ...) NSLog((@"AKLocation - [Line %d] " fmt), __LINE__, ##__VA_ARGS__);
+#   ifndef AKLLog
+#      define AKLLog(fmt, ...) NSLog((@"AKLocation - [Line %d] " fmt), __LINE__, ##__VA_ARGS__);
+#   endif
 #else
 #   define AKLLog(...)
 #endif
@@ -52,6 +57,11 @@ NSString *const kAKLocationManagerErrorDomain = @"AKErrorDomain";
 + (void)setDistanceFilterAccuracy:(CLLocationAccuracy)accuracy
 {
     _distanceFilterAccuracy = accuracy;
+}
+
++ (void)setDesiredAccuracy:(CLLocationAccuracy)desiredAccuracy
+{
+    _desiredAccuracy = desiredAccuracy;
 }
 
 + (void)setTimeoutTimeInterval:(NSTimeInterval)timeInterval
@@ -71,7 +81,7 @@ NSString *const kAKLocationManagerErrorDomain = @"AKErrorDomain";
     }
     
     _locationManager.distanceFilter = _distanceFilterAccuracy;
-    _locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
+    _locationManager.desiredAccuracy = _desiredAccuracy;
     _locationManager.delegate = _locationManager;
     
     _locationTimeoutTimer = [NSTimer scheduledTimerWithTimeInterval:_timeoutTimeInterval
