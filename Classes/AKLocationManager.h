@@ -59,6 +59,8 @@ typedef enum {
 //
 // CLLocationAccuracy used to represent a location accuracy level in meters. The lower the value in meters, the
 // more physically precise the location is. A negative accuracy value indicates an invalid location.
+//
+// The default value of this property is 3000.0.
 // 
 + (void)setDesiredAccuracy:(CLLocationAccuracy)desiredAccuracy;
 
