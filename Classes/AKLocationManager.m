@@ -36,7 +36,7 @@ static CLLocationAccuracy _distanceFilterAccuracy = 2000.0f;
 static NSTimeInterval _timeoutTimeInterval = 10.0f;
 static CLLocationAccuracy _desiredAccuracy = 3000.0;
 
-NSString *const kAKLocationManagerErrorDomain = @"AKErrorDomain";
+NSString *const kAKLocationManagerErrorDomain = @"AKLocationManagerErrorDomain";
 
 //
 // If you need logging, just uncomment the line below and comment AKLLog(...) inside #ifdef DEBUG
@@ -72,8 +72,16 @@ NSString *const kAKLocationManagerErrorDomain = @"AKErrorDomain";
 + (void)startLocatingWithUpdateBlock:(LocationUpdateBlock)didUpdate
                          failedBlock:(LocationFailedBlock)didFail
 {
-    _locationDidUpdate = [didUpdate copy];
-    _locationDidFail = [didFail copy];
+    if (![AKLocationManager canLocate])
+    {
+        didFail([NSError errorWithDomain:kAKLocationManagerErrorDomain
+                                    code:AKLocationManagerErrorCannotLocate
+                                userInfo:nil]);
+        return;
+    }
+    
+    _locationDidUpdate = didUpdate;
+    _locationDidFail = didFail;
     
     if (!_locationManager)
     {
@@ -84,7 +92,7 @@ NSString *const kAKLocationManagerErrorDomain = @"AKErrorDomain";
     _locationManager.desiredAccuracy = _desiredAccuracy;
     _locationManager.delegate = _locationManager;
     
-    _locationTimeoutTimer = [NSTimer scheduledTimerWithTimeInterval:_timeoutTimeInterval
+    _locationTimeoutTimer = [NSTimer scheduledTimerWithTimeInterval:10.0f
                                                              target:_locationManager
                                                            selector:@selector(timerEnded)
                                                            userInfo:nil

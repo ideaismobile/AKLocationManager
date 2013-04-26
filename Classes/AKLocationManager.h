@@ -22,7 +22,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
-// 
+//
+
 #import <CoreLocation/CoreLocation.h>
 
 extern NSString *const kAKLocationManagerErrorDomain;
@@ -32,6 +33,7 @@ typedef void (^LocationFailedBlock)(NSError *error);
 
 typedef enum {
     AKLocationManagerErrorTimeout = 0,
+    AKLocationManagerErrorCannotLocate = 1,
 } AKLocationManagerError;
 
 @interface AKLocationManager : CLLocationManager <CLLocationManagerDelegate>
