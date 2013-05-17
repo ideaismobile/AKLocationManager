@@ -165,7 +165,7 @@ NSString *const kAKLocationManagerErrorDomain = @"AKLocationManagerErrorDomain";
 
 + (BOOL)canLocate
 {
-    return ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined)
+    return (([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized) || ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined))
             && [CLLocationManager locationServicesEnabled];
 }
 
