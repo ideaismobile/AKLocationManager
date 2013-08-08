@@ -146,7 +146,12 @@ NSString *const kAKLocationManagerErrorDomain = @"AKLocationManagerErrorDomain";
         [_locationTimeoutTimer invalidate];
         _locationTimeoutTimer = nil;
     }
-    [manager stopUpdatingLocation];
+    
+    if (error.domain == kCLErrorDomain && error.code == kCLErrorDenied)
+    {
+        [manager stopUpdatingLocation];
+    }
+    
     if (_locationDidFail)
         _locationDidFail(error);
 }
