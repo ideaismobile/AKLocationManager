@@ -32,7 +32,7 @@ LocationFailedBlock _locationDidFail;
 
 static AKLocationManager *_locationManager = nil;
 static NSTimer *_locationTimeoutTimer = nil;
-static CLLocationAccuracy _distanceFilterAccuracy = 2000.0f;
+static CLLocationDistance _distanceFilterAccuracy = 2000.0f;
 static NSTimeInterval _timeoutTimeInterval = 10.0f;
 static CLLocationAccuracy _desiredAccuracy = 3000.0;
 
@@ -92,7 +92,7 @@ NSString *const kAKLocationManagerErrorDomain = @"AKLocationManagerErrorDomain";
     _locationManager.desiredAccuracy = _desiredAccuracy;
     _locationManager.delegate = _locationManager;
     
-    _locationTimeoutTimer = [NSTimer scheduledTimerWithTimeInterval:10.0f
+    _locationTimeoutTimer = [NSTimer scheduledTimerWithTimeInterval:_timeoutTimeInterval
                                                              target:_locationManager
                                                            selector:@selector(timerEnded)
                                                            userInfo:nil
@@ -134,7 +134,9 @@ NSString *const kAKLocationManagerErrorDomain = @"AKLocationManagerErrorDomain";
         }
         [manager stopUpdatingLocation];
         if (_locationDidUpdate)
+        {
             _locationDidUpdate(newLocation);
+        }
     }
 }
 
@@ -153,7 +155,9 @@ NSString *const kAKLocationManagerErrorDomain = @"AKLocationManagerErrorDomain";
     }
     
     if (_locationDidFail)
+    {
         _locationDidFail(error);
+    }
 }
 
 + (void)stopLocating
