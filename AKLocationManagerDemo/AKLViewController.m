@@ -19,9 +19,6 @@
 {
     [super viewDidLoad];
     
-    //
-    // First, we set the desired accuracy and timeout. Note that this is not obligatory
-    //
     [self.accuracyLabel setText:[NSString stringWithFormat:@"%d", (int)self.accuracySlider.value]];
     [self.timeoutLabel setText:[NSString stringWithFormat:@"%.2f", self.timeoutSlider.value]];
 }
@@ -34,7 +31,7 @@
 - (IBAction)accuracySliderValueChanged:(UISlider*)sender
 {
     [self.accuracyLabel setText:[NSString stringWithFormat:@"%d", (int)self.accuracySlider.value]];
-    [AKLocationManager setDistanceFilterAccuracy:sender.value];
+    [AKLocationManager setDesiredAccuracy:sender.value];
 }
 
 - (IBAction)timeoutSliderValueChanged:(UISlider*)sender {
@@ -56,9 +53,9 @@
         //
         // Do whatever you wanna do with the location object
         //
-        // Keep in mind you DO NOT have to call stopLocating, it's done for you
+        // Keep in mind you DO NOT have to call stopLocating
         //
-        NSLog(@"Location Acquired - %@", location);
+        NSLog(@"Location acquired.");
         
         [self.mapView setCenterCoordinate:location.coordinate animated:YES];
         
@@ -68,7 +65,7 @@
         //
         
         [[[UIAlertView alloc] initWithTitle:@"Error"
-                                    message:[NSError description]
+                                    message:[error description]
                                    delegate:self
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil, nil] show];

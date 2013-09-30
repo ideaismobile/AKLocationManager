@@ -34,7 +34,7 @@ static AKLocationManager *_locationManager = nil;
 static NSTimer *_locationTimeoutTimer = nil;
 static CLLocationDistance _distanceFilterAccuracy = 2000.0f;
 static NSTimeInterval _timeoutTimeInterval = 10.0f;
-static CLLocationAccuracy _desiredAccuracy = 3000.0;
+static CLLocationAccuracy _desiredAccuracy = 3000.0f;
 
 NSString *const kAKLocationManagerErrorDomain = @"AKLocationManagerErrorDomain";
 
@@ -43,7 +43,6 @@ NSString *const kAKLocationManagerErrorDomain = @"AKLocationManagerErrorDomain";
 //
 // If you want to disable logging completely, add #define AKLLog(...) to your prefix file
 //
-
 #ifdef DEBUG
 #   ifndef AKLLog
 #      define AKLLog(fmt, ...) NSLog((@"AKLocation - [Line %d] " fmt), __LINE__, ##__VA_ARGS__);
@@ -74,9 +73,10 @@ NSString *const kAKLocationManagerErrorDomain = @"AKLocationManagerErrorDomain";
 {
     if (![AKLocationManager canLocate])
     {
-        didFail([NSError errorWithDomain:kAKLocationManagerErrorDomain
-                                    code:AKLocationManagerErrorCannotLocate
-                                userInfo:nil]);
+        NSError *e = [NSError errorWithDomain:kAKLocationManagerErrorDomain
+                                         code:AKLocationManagerErrorCannotLocate
+                                     userInfo:nil];
+        didFail(e);
         return;
     }
     
@@ -99,34 +99,34 @@ NSString *const kAKLocationManagerErrorDomain = @"AKLocationManagerErrorDomain";
                                                             repeats:NO];
     [_locationManager startUpdatingLocation];
     
-    AKLLog(@"started locating with accuracy: %.2f timeout: %.2f", _distanceFilterAccuracy, _timeoutTimeInterval);
+    AKLLog(@"\n Started locating\n ==============\n Distance filter accuracy: %.2f\n Desired accuracy: %.2f\n Timeout: %.2f", _distanceFilterAccuracy, _desiredAccuracy, _timeoutTimeInterval);
 }
 
 - (void)timerEnded
 {
-    AKLLog(@"timer ended");
+    AKLLog(@"Timer ended. Stopping AKLocationManager.");
     CLLocation *lastLoc = _locationManager.location;
     
     if ((lastLoc == nil) || (lastLoc.horizontalAccuracy > _distanceFilterAccuracy))
     {
-        AKLLog(@"timer ended > entrou no if");
         [_locationManager stopUpdatingLocation];
         
         NSError *error = [[NSError alloc] initWithDomain:kAKLocationManagerErrorDomain
                                                     code:AKLocationManagerErrorTimeout
                                                 userInfo:nil];
         if (_locationDidFail)
+        {
             _locationDidFail(error);
+        }
     }
     _locationTimeoutTimer = nil;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    AKLLog(@"Did update: %@", newLocation);
-    if (newLocation.horizontalAccuracy <= _distanceFilterAccuracy && abs([newLocation.timestamp timeIntervalSinceNow]) < 15.0)
+    AKLLog(@"\n Did update location:\n %@\n Altitude: %f\n Vertical accuracy: %f\n\n", newLocation, newLocation.altitude, newLocation.verticalAccuracy);
+    if (newLocation.horizontalAccuracy <= _desiredAccuracy && abs([newLocation.timestamp timeIntervalSinceNow]) < 15.0)
     {
-        AKLLog(@"loc > entrou if");
         if (_locationTimeoutTimer)
         {
             [_locationTimeoutTimer invalidate];
@@ -142,14 +142,19 @@ NSString *const kAKLocationManagerErrorDomain = @"AKLocationManagerErrorDomain";
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-    AKLLog(@"Did fail");
+    AKLLog(@"Did fail getting location: %@", error);
     if (_locationTimeoutTimer)
     {
         [_locationTimeoutTimer invalidate];
         _locationTimeoutTimer = nil;
     }
     
-    if (error.domain == kCLErrorDomain && error.code == kCLErrorDenied)
+    //
+    // Stops locating if access to location
+    // services was denied
+    //
+    if ((error.domain == kCLErrorDomain) &&
+        (error.code == kCLErrorDenied))
     {
         [manager stopUpdatingLocation];
     }
@@ -174,7 +179,8 @@ NSString *const kAKLocationManagerErrorDomain = @"AKLocationManagerErrorDomain";
 
 + (BOOL)canLocate
 {
-    return (([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized) || ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined))
+    return (([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized) ||
+            ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined))
             && [CLLocationManager locationServicesEnabled];
 }
 

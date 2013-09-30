@@ -20,7 +20,6 @@
 
 - (IBAction)accuracySliderValueChanged:(id)sender;
 - (IBAction)timeoutSliderValueChanged:(id)sender;
-
 - (IBAction)startLocatingButtonPressed:(id)sender;
 
 @end
