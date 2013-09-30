@@ -1,6 +1,14 @@
 AKLocationManager leverages the implementation of delegates to handle simple scenarios where you just want a quick way to get the user's current coordinate.
 
-## Usage
+## Installation
+
+### Via Cocoapods:
+
+```bash
+pod 'AKLocationManager'
+```
+
+### Manually:
 
 - Download or clone the repository:
 
@@ -17,6 +25,8 @@ $ git clone git://github.com/appkraft/AKLocationManager.git
 ```objc
 #import "AKLocationManager.h"
 ```
+
+## Usage
 
 - Call + (void)startLocatingWithUpdateBlock:(LocationUpdateBlock)didUpdate failedBlock:(LocationFailedBlock)didFail; it will check for authorization status and if location services is turned on, it will also fire a timeout timer.  
 
