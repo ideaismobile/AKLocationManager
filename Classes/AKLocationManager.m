@@ -113,19 +113,15 @@ NSString *const kAKLocationManagerErrorDomain = @"AKLocationManagerErrorDomain";
 - (void)timerEnded
 {
     AKLLog(@"Timer ended. Stopping AKLocationManager.");
-    CLLocation *lastLoc = _locationManager.location;
     
-    if ((lastLoc == nil) || (lastLoc.horizontalAccuracy > _distanceFilterAccuracy))
+    [_locationManager stopUpdatingLocation];
+    
+    NSError *error = [[NSError alloc] initWithDomain:kAKLocationManagerErrorDomain
+                                                code:AKLocationManagerErrorTimeout
+                                            userInfo:nil];
+    if (_locationDidFail)
     {
-        [_locationManager stopUpdatingLocation];
-        
-        NSError *error = [[NSError alloc] initWithDomain:kAKLocationManagerErrorDomain
-                                                    code:AKLocationManagerErrorTimeout
-                                                userInfo:nil];
-        if (_locationDidFail)
-        {
-            _locationDidFail(error);
-        }
+        _locationDidFail(error);
     }
     _locationTimeoutTimer = nil;
 }
