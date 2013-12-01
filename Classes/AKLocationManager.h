@@ -31,44 +31,25 @@ extern NSString *const kAKLocationManagerErrorDomain;
 typedef void (^LocationUpdateBlock)(CLLocation *location);
 typedef void (^LocationFailedBlock)(NSError *error);
 
-typedef enum {
+typedef NS_ENUM(NSInteger, AKLocationManagerErrorType){
     AKLocationManagerErrorTimeout = 0,
-    AKLocationManagerErrorCannotLocate = 1,
-} AKLocationManagerError;
+    AKLocationManagerErrorCannotLocate = 1
+};
 
 @interface AKLocationManager : CLLocationManager <CLLocationManagerDelegate>
 
 // ATENTION: These setters should be called before you call startLocationWithUpdateBlock
-
-//
-// The receiver does its best to achieve the requested accuracy; however,
-// the actual accuracy is not guaranteed.
-//
-// You should assign a value to this property that is appropriate for your
-// usage scenario. In other words, if you need the current location only within
-// a few kilometers, you should not specify kCLLocationAccuracyBest for the accuracy.
-//
-// Determining a location with greater accuracy requires more time and more power.
-//
-// When requesting high-accuracy location data, it may take a long time before you get an update.
-//
-// The default value of this property is 2000.0f.
-//
 + (void)setDistanceFilterAccuracy:(CLLocationAccuracy)accuracy;
-
-// 
-// Desired accuracy
-//
-// CLLocationAccuracy used to represent a location accuracy level in meters. The lower the value in meters, the
-// more physically precise the location is. A negative accuracy value indicates an invalid location.
-//
-// The default value of this property is 3000.0.
-// 
 + (void)setDesiredAccuracy:(CLLocationAccuracy)desiredAccuracy;
 
-//
-// Number of seconds to wait before timing out - default is 10
-//
+/**
+ *  The timeout time interval.
+ *  
+ *  This timeout interval will only be respected if the location manager does
+ *  not get any updates or error.
+ *
+ *  The default value of this property is 10.0f.
+ */
 + (void)setTimeoutTimeInterval:(NSTimeInterval)timeInterval;
 
 //
@@ -79,31 +60,35 @@ typedef enum {
 // To get called only on an accurate measurement, use the distance filter property
 // in the .m
 //
+/**
+ *  Initializes the location manager, handles the delegate and calls the
+ *  update or failed block. Blocks will only be called once, then it will stop updating.
+ *
+ *  @param didUpdate The location update block.
+ *  @param didFail   THe location failure block.
+ */
 + (void)startLocatingWithUpdateBlock:(LocationUpdateBlock)didUpdate
                          failedBlock:(LocationFailedBlock)didFail;
 
-//
-// Stops the generation of location updates.
-//
-// Neither the did update Block or the failure block will be called
-// Also, the timeout timer will be invalidated
-//
+/**
+ *  Stops the generation of location updates.
+ */
 + (void)stopLocating;
 
-//
-// Checks if the app is authorized to use location services
-// Also checks if location services are enabled
-//
-// Returns YES if both conditions are met
-//
+/**
+ *  Checks if the app is authorized to use location services
+ *  and if location services are enabled
+ *
+ *  @return Returns YES if both conditions are met, otherwise NO.
+ */
 + (BOOL)canLocate;
 
-//
-// Returns the most recent coordinate from the location manager instance
-//
-// Will return CLLocationCoordinate2D if the locationManager hasn't been
-// activated yet.
-//
+/**
+ *  Returns the most recent coordinate from the location manager instance
+ *
+ *  Will return CLLocationCoordinate2D if the locationManager hasn't been
+ *  activated yet.
+ */
 + (CLLocationCoordinate2D)mostRecentCoordinate;
 
 @end

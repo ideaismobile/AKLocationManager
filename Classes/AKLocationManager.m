@@ -30,11 +30,13 @@
 LocationUpdateBlock _locationDidUpdate;
 LocationFailedBlock _locationDidFail;
 
+#define kAKLocationManagerValueDefault -99999.0f
+
 static AKLocationManager *_locationManager = nil;
 static NSTimer *_locationTimeoutTimer = nil;
-static CLLocationDistance _distanceFilterAccuracy = 2000.0f;
+static CLLocationDistance _distanceFilterAccuracy = kAKLocationManagerValueDefault;
 static NSTimeInterval _timeoutTimeInterval = 10.0f;
-static CLLocationAccuracy _desiredAccuracy = 3000.0f;
+static CLLocationAccuracy _desiredAccuracy = kAKLocationManagerValueDefault;
 
 NSString *const kAKLocationManagerErrorDomain = @"AKLocationManagerErrorDomain";
 
@@ -88,10 +90,16 @@ NSString *const kAKLocationManagerErrorDomain = @"AKLocationManagerErrorDomain";
         _locationManager = [[AKLocationManager alloc] init];
     }
     
-    _locationManager.distanceFilter = _distanceFilterAccuracy;
-    _locationManager.desiredAccuracy = _desiredAccuracy;
-    _locationManager.delegate = _locationManager;
+    if (_distanceFilterAccuracy != kAKLocationManagerValueDefault)
+    {
+        _locationManager.distanceFilter = _distanceFilterAccuracy;
+    }
+    if (_desiredAccuracy != kAKLocationManagerValueDefault)
+    {
+        _locationManager.desiredAccuracy = _desiredAccuracy;
+    }
     
+    _locationManager.delegate = _locationManager;
     _locationTimeoutTimer = [NSTimer scheduledTimerWithTimeInterval:_timeoutTimeInterval
                                                              target:_locationManager
                                                            selector:@selector(timerEnded)
@@ -122,21 +130,56 @@ NSString *const kAKLocationManagerErrorDomain = @"AKLocationManagerErrorDomain";
     _locationTimeoutTimer = nil;
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+- (BOOL)isValidLocation:(CLLocation*)location
+{
+    return (location.horizontalAccuracy <= _desiredAccuracy &&
+            //
+            // According to CLLocationManager Delegate's documentation:
+            //
+            // "If updates were deferred or if multiple locations arrived
+            // before they could be delivered, the array may contain additional entries."
+            //
+            // So we check when they were made
+            //
+            abs([location.timestamp timeIntervalSinceNow]) < 15.0);
+}
+
+- (void)didFinishUpdatingLocation:(CLLocationManager *)manager location:(CLLocation *)location
+{
+    if (_locationTimeoutTimer)
+    {
+        [_locationTimeoutTimer invalidate];
+        _locationTimeoutTimer = nil;
+    }
+    [manager stopUpdatingLocation];
+    if (_locationDidUpdate)
+    {
+        _locationDidUpdate(location);
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    for (int i = locations.count-1; i > -1; i--)
+    {
+        CLLocation *loc = locations[i];
+        
+        if ([self isValidLocation:loc])
+        {
+            [self didFinishUpdatingLocation:manager location:loc];
+        }
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
 {
     AKLLog(@"\n Did update location:\n %@\n Altitude: %f\n Vertical accuracy: %f\n\n", newLocation, newLocation.altitude, newLocation.verticalAccuracy);
-    if (newLocation.horizontalAccuracy <= _desiredAccuracy && abs([newLocation.timestamp timeIntervalSinceNow]) < 15.0)
+    
+    if ([self isValidLocation:newLocation])
     {
-        if (_locationTimeoutTimer)
-        {
-            [_locationTimeoutTimer invalidate];
-            _locationTimeoutTimer = nil;
-        }
-        [manager stopUpdatingLocation];
-        if (_locationDidUpdate)
-        {
-            _locationDidUpdate(newLocation);
-        }
+        [self didFinishUpdatingLocation:manager location:newLocation];
     }
 }
 
