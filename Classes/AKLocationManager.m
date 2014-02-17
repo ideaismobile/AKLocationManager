@@ -78,7 +78,9 @@
             NSError *e = [NSError errorWithDomain:kAKLocationManagerErrorDomain
                                              code:AKLocationManagerErrorCannotLocate
                                          userInfo:nil];
-            didFail(e);
+            if (didFail) {
+                didFail(e);
+            }
             return;
         }
         
