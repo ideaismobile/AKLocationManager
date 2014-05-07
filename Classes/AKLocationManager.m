@@ -29,7 +29,7 @@
     
     LocationUpdateBlock _locationDidUpdate;
     LocationFailedBlock _locationDidFail;
-    
+    HeadingUpdateBlock  _headingDidUpdate;
 #define kAKLocationManagerValueDefault -99999.0f
     
     static AKLocationManager *_locationManager = nil;
@@ -114,10 +114,17 @@
                                                                userInfo:nil
                                                                 repeats:NO];
         [_locationManager startUpdatingLocation];
+
+      if(_headingDidUpdate){
+        [_locationManager startUpdatingHeading];
+      }
         
         AKLLog(@"\n Started locating\n ==============\n Distance filter accuracy: %.2f\n Desired accuracy: %.2f\n Timeout: %.2f", _distanceFilterAccuracy, _desiredAccuracy, _timeoutTimeInterval);
     }
-    
++ (void)startLocatingWithUpdateBlock:(LocationUpdateBlock)didUpdate HeadingUpdateBlock:(HeadingUpdateBlock)didUpdateHeading failedBlock:(LocationFailedBlock)didFail{
+  _headingDidUpdate = didUpdateHeading;
+  [AKLocationManager startLocatingWithUpdateBlock:didUpdate failedBlock:didFail];
+}
 - (void)timerEnded
     {
         AKLLog(@"Timer ended. Stopping AKLocationManager.");
@@ -161,7 +168,12 @@
             _locationDidUpdate(location);
         }
     }
-    
+- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading{
+    if (_headingDidUpdate)
+    {
+      _headingDidUpdate(newHeading);
+    }
+}
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
     {
         for (int i = locations.count-1; i > -1; i--)
