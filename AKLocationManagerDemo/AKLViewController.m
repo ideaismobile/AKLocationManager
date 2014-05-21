@@ -59,6 +59,8 @@
         
         [self.mapView setCenterCoordinate:location.coordinate animated:YES];
         
+    }HeadingUpdateBlock:^(CLHeading *heading) {
+      NSLog(@"Heading updated.");
     }failedBlock:^(NSError *error){
         //
         // This block is also called if we get a timeout

@@ -29,6 +29,7 @@
 extern NSString *const kAKLocationManagerErrorDomain;
 
 typedef void (^LocationUpdateBlock)(CLLocation *location);
+typedef void (^HeadingUpdateBlock)(CLHeading *heading);
 typedef void (^LocationFailedBlock)(NSError *error);
 
 typedef NS_ENUM(NSInteger, AKLocationManagerErrorType){
@@ -68,6 +69,10 @@ typedef NS_ENUM(NSInteger, AKLocationManagerErrorType){
  *  @param didFail   THe location failure block.
  */
 + (void)startLocatingWithUpdateBlock:(LocationUpdateBlock)didUpdate
+                         failedBlock:(LocationFailedBlock)didFail;
+
++ (void)startLocatingWithUpdateBlock:(LocationUpdateBlock)didUpdate
+                  HeadingUpdateBlock:(HeadingUpdateBlock)didUpdateHeading
                          failedBlock:(LocationFailedBlock)didFail;
 
 /**
