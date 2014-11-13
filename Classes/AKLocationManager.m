@@ -88,6 +88,10 @@
         if (!_locationManager)
         {
             _locationManager = [[AKLocationManager alloc] init];
+            
+            if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+                [_locationManager requestWhenInUseAuthorization];
+            }
         }
         
         if (_distanceFilterAccuracy != kAKLocationManagerValueDefault)
