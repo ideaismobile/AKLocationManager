@@ -2,7 +2,7 @@ AKLocationManager leverages the implementation of delegates to handle simple sce
 
 ## Installation
 
-### Via Cocoapods:
+### Via CocoaPods:
 
 ```bash
 pod 'AKLocationManager'
